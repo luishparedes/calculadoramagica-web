@@ -4,15 +4,18 @@ function calcularPrecioVenta() {
     const costo = parseFloat(document.getElementById('costo').value);
     const ganancia = parseFloat(document.getElementById('ganancia').value) / 100;
     const moneda = document.getElementById('moneda').value;
+    const unidades = parseFloat(document.getElementById('unidades').value);
 
-    if (isNaN(costo) || isNaN(ganancia) || ganancia >= 1) {
+    if (isNaN(costo) || isNaN(ganancia) || ganancia >= 1 || isNaN(unidades)) {
         document.getElementById('resultadoPrecioVenta').innerText = 'Por favor, introduce valores válidos';
         return;
     }
 
     const precioVenta = costo / (1 - ganancia);
+    const precioUnitario = (costo + (costo * ganancia)) / unidades;
 
     document.getElementById('resultadoPrecioVenta').innerText = `Precio sugerido al público: ${moneda} ${precioVenta.toFixed(2)}`;
+    document.getElementById('precioUnitario').innerText = `Precio unitario: ${precioUnitario.toFixed(2)}`;
 }
 
 function guardarProducto() {
@@ -64,4 +67,5 @@ function reiniciarCalculadora() {
     document.getElementById('ganancia').value = '';
     document.getElementById('descripcion').value = '';
     document.getElementById('resultadoPrecioVenta').innerText = 'Precio sugerido al público: ';
+    document.getElementById('precioUnitario').innerText = 'Precio unitario: ';
 }
