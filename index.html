@@ -3,49 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Mágica</title>
+    <title>Calculadora MÃ¡gica</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="calculator">
-        <h2>Calculadora Mágica</h2>
-
+        <h2>Calculadora MÃ¡gica</h2>
         <section>
-            <h3>Sección 1: Datos del Producto</h3>
+            <h3>SecciÃ³n 1: Datos del Producto</h3>
             <input type="text" id="producto" placeholder="Nombre del producto" required>
             <input type="number" id="costo" placeholder="Costo del producto" required>
             <select id="moneda" required>
-                <option value="USD">$ (Dólares)</option>
-                <option value="PESO">? (Pesos)</option>
-                <option value="BS">Bs (Bolívares)</option>
+                <option value="USD">$ (DÃ³lares)</option>
+                <option value="PESO">$ (Pesos)</option>
+                <option value="BS">Bs (BolÃ­vares)</option>
             </select>
             <select id="descripcion" required>
-                <option value="">Selecciona una descripción</option>
-                <option value="viveres">Víveres</option>
+                <option value="">Selecciona una descripciÃ³n</option>
+                <option value="viveres">VÃ­veres</option>
                 <option value="gaseosas">Gaseosas</option>
-                <option value="lacteos">Lácteos</option>
+                <option value="lacteos">LÃ¡cteos</option>
                 <option value="enlatados">Enlatados</option>
-                <option value="frigorifico">Frigorífico</option>
-                <option value="charcuteria">Charcutería</option>
+                <option value="frigorifico">FrigorÃ­fico</option>
+                <option value="charcuteria">CharcuterÃ­a</option>
             </select>
         </section>
-
         <section>
-            <h3>Sección 2: Precio de Venta</h3>
+            <h3>SecciÃ³n 2: Precio de Venta</h3>
             <input type="number" id="ganancia" placeholder="Porcentaje de ganancia" required>
             <button onclick="calcularPrecioVenta()">Calcular Precio de Venta</button>
-            <p id="resultadoPrecioVenta">Precio sugerido al público: </p>
+            <p id="resultadoPrecioVenta">Precio sugerido al pÃºblico: </p>
         </section>
-
         <button onclick="guardarProducto()">Guardar Producto</button>
     </div>
-
     <div class="menu">
         <button onclick="mostrarLista()">Mostrar Lista de Precios</button>
     </div>
-
-    <div class="product-list" id="listaProductos"></div>
-
     <script src="script.js"></script>
 </body>
 </html>
