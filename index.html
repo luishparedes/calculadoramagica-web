@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Mágica</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Incluye el contenido del CSS aquí */
+    </style>
 </head>
 <body>
     <div class="calculator">
@@ -31,14 +34,20 @@
         <section>
             <h3>Sección 2: Precio de Venta</h3>
             <input type="number" id="ganancia" placeholder="Porcentaje de ganancia" required>
+            <input type="number" id="unidades" placeholder="Cantidad de unidades" required>
             <button onclick="calcularPrecioVenta()">Calcular Precio de Venta</button>
             <p id="resultadoPrecioVenta">Precio sugerido al público: </p>
+            <p id="precioUnitario">Precio unitario: </p>
         </section>
         <button onclick="guardarProducto()">Guardar Producto</button>
     </div>
     <div class="menu">
         <button onclick="mostrarLista()">Mostrar Lista de Precios</button>
     </div>
+    <div id="listaProductos"></div>
     <script src="script.js"></script>
+    <script>
+        /* Incluye el contenido del JavaScript aquí */
+    </script>
 </body>
 </html>
