@@ -6,13 +6,13 @@ function calcularPrecioVenta() {
     const moneda = document.getElementById('moneda').value;
 
     if (isNaN(costo) || isNaN(ganancia) || ganancia >= 1) {
-        document.getElementById('resultadoPrecioVenta').innerText = 'Por favor, introduce valores válidos';
+        document.getElementById('resultadoPrecioVenta').innerText = 'Por favor, introduce valores vÃ¡lidos';
         return;
     }
 
     const precioVenta = costo / (1 - ganancia);
 
-    document.getElementById('resultadoPrecioVenta').innerText = `Precio sugerido al público: ${moneda} ${precioVenta.toFixed(2)}`;
+    document.getElementById('resultadoPrecioVenta').innerText = `Precio sugerido al pÃºblico: ${moneda} ${precioVenta.toFixed(2)}`;
 }
 
 function guardarProducto() {
@@ -20,7 +20,7 @@ function guardarProducto() {
     const descripcion = document.getElementById('descripcion').value;
     const precioVenta = document.getElementById('resultadoPrecioVenta').innerText;
 
-    if (producto === '' || descripcion === '' || precioVenta === 'Precio sugerido al público: ') {
+    if (producto === '' || descripcion === '' || precioVenta === 'Precio sugerido al pÃºblico: ') {
         alert('Por favor, completa todos los campos y calcula el precio de venta');
         return;
     }
@@ -63,5 +63,5 @@ function reiniciarCalculadora() {
     document.getElementById('costo').value = '';
     document.getElementById('ganancia').value = '';
     document.getElementById('descripcion').value = '';
-    document.getElementById('resultadoPrecioVenta').innerText = 'Precio sugerido al público: ';
+    document.getElementById('resultadoPrecioVenta').innerText = 'Precio sugerido al pÃºblico: ';
 }
