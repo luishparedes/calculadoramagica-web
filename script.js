@@ -5,29 +5,24 @@ function calcularPrecioVenta() {
     const ganancia = parseFloat(document.getElementById('ganancia').value) / 100;
     const moneda = document.getElementById('moneda').value;
     const unidades = parseFloat(document.getElementById('unidades').value);
-
     if (isNaN(costo) || isNaN(ganancia) || ganancia >= 1 || isNaN(unidades)) {
         document.getElementById('resultadoPrecioVenta').innerText = 'Por favor, introduce valores válidos';
         return;
     }
-
     const precioVenta = costo / (1 - ganancia);
-    const precioUnitario = (costo + (costo * ganancia)) / unidades;
-
+    const precioUnitario = precioVenta / unidades; // Corrección aquí
     document.getElementById('resultadoPrecioVenta').innerText = `Precio sugerido al público: ${moneda} ${precioVenta.toFixed(2)}`;
-    document.getElementById('precioUnitario').innerText = `Precio unitario: ${precioUnitario.toFixed(2)}`;
+    document.getElementById('precioUnitario').innerText = `Precio unitario: ${moneda} ${precioUnitario.toFixed(2)}`; // Incluyendo moneda aquí
 }
 
 function guardarProducto() {
     const producto = document.getElementById('producto').value;
     const descripcion = document.getElementById('descripcion').value;
     const precioVenta = document.getElementById('resultadoPrecioVenta').innerText;
-
     if (producto === '' || descripcion === '' || precioVenta === 'Precio sugerido al público: ') {
         alert('Por favor, completa todos los campos y calcula el precio de venta');
         return;
     }
-
     productos.push({ nombre: producto, descripcion: descripcion, precio: precioVenta });
     actualizarLista();
     reiniciarCalculadora();
