@@ -29,6 +29,9 @@
                 <option value="enlatados">Enlatados</option>
                 <option value="frigorifico">Frigorífico</option>
                 <option value="charcuteria">Charcutería</option>
+                <option value="confiteria">Confitería</option>
+                <option value="quincalleria">Quincallería</option>
+                <option value="peluqueria">Peluquería</option>
             </select>
         </section>
         <section>
@@ -36,13 +39,13 @@
             <input type="number" id="ganancia" placeholder="Porcentaje de ganancia" required>
             <input type="number" id="unidades" placeholder="Cantidad de unidades" required>
             <button onclick="calcularPrecioVenta()">Calcular Precio de Venta</button>
-            <p id="resultadoPrecioVenta">Precio sugerido al público: </p>
+            <p id="resultadoPrecioVenta">Precio al mayor: </p>
             <p id="precioUnitario">Precio unitario: </p>
         </section>
         <button onclick="guardarProducto()">Guardar Producto</button>
     </div>
     <div class="menu">
-        <button onclick="mostrarLista()">Mostrar Lista de Precios</button>
+        <button onclick="compartirLista()">Compartir Lista via WhatsApp</button>
     </div>
     <div id="listaProductos"></div>
     <script src="script.js"></script>
