@@ -5,25 +5,37 @@ function calcularPrecioVenta() {
     const ganancia = parseFloat(document.getElementById('ganancia').value) / 100;
     const moneda = document.getElementById('moneda').value;
     const unidades = parseFloat(document.getElementById('unidades').value);
+
     if (isNaN(costo) || isNaN(ganancia) || ganancia >= 1 || isNaN(unidades)) {
         document.getElementById('resultadoPrecioVenta').innerText = 'Por favor, introduce valores válidos';
         return;
     }
-    const precioVenta = costo / (1 - ganancia);
-    const precioUnitario = precioVenta / unidades; // Corrección aquí
-    document.getElementById('resultadoPrecioVenta').innerText = `Precio sugerido al público: ${moneda} ${precioVenta.toFixed(2)}`;
-    document.getElementById('precioUnitario').innerText = `Precio unitario: ${moneda} ${precioUnitario.toFixed(2)}`; // Incluyendo moneda aquí
+
+    const precioMayor = costo / (1 - ganancia);
+    const precioUnitario = precioMayor / unidades;
+
+    document.getElementById('resultadoPrecioVenta').innerText = `Precio al mayor: ${moneda} ${precioMayor.toFixed(2)}`;
+    document.getElementById('precioUnitario').innerText = `Precio unitario: ${moneda} ${precioUnitario.toFixed(2)}`;
 }
 
 function guardarProducto() {
     const producto = document.getElementById('producto').value;
     const descripcion = document.getElementById('descripcion').value;
-    const precioVenta = document.getElementById('resultadoPrecioVenta').innerText;
-    if (producto === '' || descripcion === '' || precioVenta === 'Precio sugerido al público: ') {
+    const precioMayor = document.getElementById('resultadoPrecioVenta').innerText;
+    const precioUnitario = document.getElementById('precioUnitario').innerText;
+
+    if (producto === '' || descripcion === '' || precioMayor === 'Precio al mayor: ') {
         alert('Por favor, completa todos los campos y calcula el precio de venta');
         return;
     }
-    productos.push({ nombre: producto, descripcion: descripcion, precio: precioVenta });
+
+    productos.push({
+        nombre: producto,
+        descripcion: descripcion,
+        precioMayor: precioMayor,
+        precioUnitario: precioUnitario
+    });
+
     actualizarLista();
     reiniciarCalculadora();
 }
@@ -32,7 +44,7 @@ function mostrarLista() {
     const lista = document.getElementById('listaProductos');
     lista.innerHTML = productos.map((producto, index) => `
         <div class="product-item">
-            <span>${producto.nombre} - ${producto.descripcion} - ${producto.precio}</span>
+            <span>${producto.nombre} - ${producto.descripcion} - ${producto.precioMayor} - ${producto.precioUnitario}</span>
             <button onclick="eliminarProducto(${index})">Borrar</button>
             <button onclick="modificarProducto(${index})">Modificar</button>
         </div>
@@ -49,9 +61,11 @@ function eliminarProducto(index) {
 }
 
 function modificarProducto(index) {
-    const nuevoPrecio = prompt('Introduce el nuevo precio:', productos[index].precio);
-    if (nuevoPrecio) {
-        productos[index].precio = nuevoPrecio;
+    const nuevoPrecioMayor = prompt('Introduce el nuevo precio al mayor:', productos[index].precioMayor);
+    const nuevoPrecioUnitario = prompt('Introduce el nuevo precio unitario:', productos[index].precioUnitario);
+    if (nuevoPrecioMayor && nuevoPrecioUnitario) {
+        productos[index].precioMayor = nuevoPrecioMayor;
+        productos[index].precioUnitario = nuevoPrecioUnitario;
         actualizarLista();
     }
 }
@@ -61,6 +75,16 @@ function reiniciarCalculadora() {
     document.getElementById('costo').value = '';
     document.getElementById('ganancia').value = '';
     document.getElementById('descripcion').value = '';
-    document.getElementById('resultadoPrecioVenta').innerText = 'Precio sugerido al público: ';
+    document.getElementById('resultadoPrecioVenta').innerText = 'Precio al mayor: ';
     document.getElementById('precioUnitario').innerText = 'Precio unitario: ';
+}
+
+function compartirLista() {
+    let mensaje = "Lista de productos:\n";
+    productos.forEach(producto => {
+        mensaje += `${producto.nombre} - ${producto.descripcion} - ${producto.precioMayor} - ${producto.precioUnitario}\n`;
+    });
+
+    const url = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+    window.open(url);
 }
